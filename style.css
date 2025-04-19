@@ -1,0 +1,96 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1A2835;
+    color: #AAB8C2;
+  }
+  
+  h2 {
+    color: #EFF2F7;
+    border-bottom: 2px solid #2C3E50;
+  }
+  
+  h3 {
+    border-bottom: 2px solid #2C3E50;
+    color: #EFF2F7;
+  }
+  
+  h4 {
+    color: #EFF2F7;
+  }
+  
+  label {
+    display: block;
+    margin: 20px 0 0 20px;
+    font-weight: bold;
+  }
+  
+  #output {
+    margin: 20px;
+  }
+  
+  input, textarea {
+    box-sizing: border-box;
+    width: 85%;
+    margin: 0 20px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #2C3E50;
+    border-radius: 5px;
+    background-color: #2C3E50;
+    color: #EFF2F7;
+  }
+  
+  input:focus, textarea:focus {
+    border: 1px solid #3498DB;
+    outline: none;
+  }
+  
+  #resetButton, #decryptButton, #cipherSelect, #resetButtonRot13, #resetButtonVigenere, #resetButtonAffine, #decryptButtonAffine, #resetButtonSubstitution, #decryptButtonSubstitution, #aes-encrypt, #aes-decrypt, #Tdes-encrypt, #Tdes-decrypt, #resetButtonAES, #resetButtonTriple {
+    background-color: #2C3E50;
+    color: #EFF2F7;
+    border: 1px solid #3498DB;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #resetButton:hover, #decryptButton:hover, #resetButtonVigenere:hover, #resetButtonAffine:hover, #decryptButtonAffine:hover, #resetButtonSubstitution:hover, #decryptButtonSubstitution:hover, #aes-encrypt:hover, #aes-decrypt:hover, #Tdes-encrypt:hover, #Tdes-decrypt:hover, #resetButtonAES:hover, #resetButtonTriple:hover {
+    background-color: #3498DB;
+    border-color: #1A2835;
+  }
+  
+  #resetButton:focus, #decryptButton:focus, #resetButtonVigenere:focus, #resetButtonAffine:focus, #decryptButtonAffine:focus, #resetButtonSubstitution:focus, #decryptButtonSubstitution:focus, #aes-encrypt:focus, #aes-decrypt:focus, #Tdes-encrypt:focus, #Tdes-decrypt:focus, #resetButtonAES:focus, #resetButtonTriple:focus {
+    outline: none;
+    border-color: #AAB8C2;
+  }
+  
+  img {
+    width: 32px;
+    height: auto;
+  }
+  
+  .ACipher {
+    border-radius: 50%;
+  }
+  
+  .info-img {
+    position: absolute;
+    top: 129px;
+    right: 54px;
+    width: 50px;
+    height: auto;
+  }
+  
+  /* the style for the little msg on info-image */
+  .tooltip {
+    display: none;
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    z-index: 1001;
+  }
