@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <title>
+      Beginner-Friendly Cryptography Tools
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+  </head>
+  <body>
+    <h2>Select Cipher</h2>
+    <select id="cipherSelect">
+      <option value="caesar">CC Caesar Cipher</option>
+      <option value="rot13">CC ROT13</option>
+      <option value="vigenere">CC Vigenère Cipher</option>
+      <option value="affine">CC Affine Cipher</option>
+      <option value="substitution">CC Substitution Cipher</option>
+      <option value="aes">BC Advanced Encryption Standard (AES)</option>
+      <option value="3DES">BC Triple(3DES)</option>
+    </select>
+
+    <div id="caesar" class="cipherDiv">
+      <h2>Caesar Cipher <img src="https://cdn-icons-png.flaticon.com/512/1792/1792193.png" alt="Caesar-Cipher-image"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for Caesar Cipher usage info" />
+    <div id="info-CC" style="display: none;">
+      <h4>Encryption process</h4>
+      <p>Each letter in the plaintext is shifted a fixed number of places down or up the alphabet. The shift value determines the number of positions each letter is moved.</p>
+      <h4>How to use</h4>
+      <p>1. Input the Text: Enter the text you want to encode or decode into the textarea.</p>
+<p>2. Specify the Shift Amount: Enter a shift value between 1 and 25.</p>
+<p>3. Encrypt: As you type or change the shift value, the encrypted text will be automatically displayed in the "Translated text" section.</p>
+<p>Decrypt: Click the "Decrypt" button to decrypt the text using the specified shift value.</p>
+    </div>
+    <label for="input">Shift (1-25):</label>
+    <input type="number" id="shift" value="1" min="1" max="25">
+    <label for="textarea">Enter your text:</label>
+    <textarea name="input" id="plaintext" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+    <button id="resetButton">Reset</button>
+    <button id="decryptButton">Decrypt</button>
+    <h3>Translated text:</h3>
+    <p id="output"></p>
+    </div>
+
+    <div id="rot13" class="cipherDiv" style="display: none;">
+      <h2>ROT13 <img src="https://www.useotools.com/theme/default/icons/rot13.png" alt="ROT13-image"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for ROT13 usage info" />
+    <div id="info-ROT" style="display: none;">
+      <h4>Encryption process</h4>
+      <p>A specific case of Caesar cipher with a fixed shift of 13. It maps each letter to the letter 13 places after it in the alphabet.</p>
+      <h4>How to use</h4>
+<p>1. Enter the text you want to encode or decode into the textarea under "Enter your text".</p>
+<p>2. The translated text will automatically appear under "Translated text".</p>
+<p>3. Click the "Reset" button to clear the input and output fields.</p>
+    </div>
+      <label for="plaintext-rot13">Enter your text:</label>
+      <textarea name="input-rot13" id="plaintext-rot13" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+      <button id="resetButtonRot13">Reset</button>
+      <h3>Translated text:</h3>
+      <p id="output-rot13"></p>
+    </div>
+    
+    <div id="vigenere" class="cipherDiv" style="display: none;">
+      <h2>Vigenère Cipher <img src="https://www.musicologie.org/Biographies/v/i/vigenere_blaise_de.jpg" alt="Vigenère-Cipher-image"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for Vigenère Cipher usage info" />
+    <div id="info-VC" style="display: none;">
+      <h4>Encryption process</h4>
+      <p>Uses a keyword that determines the shift for each letter.
+        Each letter of the plaintext is shifted according to the corresponding letter in the keyword (repeated cyclically).</p>
+      <h4>How to use</h4>
+<p>1. Enter your desired key in the "Enter Key" input field. This key will be used to encode your text (Example - Key: SECRET).</p>
+<p>2. Write or paste the text you want to translate in the "Enter your text" textarea (Example - Plaintext: HELLO).</p>
+<p>3. The translated text will automatically appear in the "Translated text" paragraph as you type or paste your text in the input fields.</p>
+    </div>
+      <label for="key">Enter Key:</label>
+      <input type="text" id="key">
+      <label for="plaintext-vigenere">Enter your text:</label>
+      <textarea name="input-vigenere" id="plaintext-vigenere" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+      <button id="resetButtonVigenere">Reset</button>
+      <h3>Translated text:</h3>
+      <p id="output-vigenere"></p>
+    </div>
+    
+    <div id="affine" class="cipherDiv" style="display: none;">
+      <h2>Affine Cipher <img src="https://privacycanada.net/app/uploads/2021/04/lock-icon.jpg" alt="Affine-Cipher-image" class="ACipher"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for Affine Cipher usage info" />
+      <div id="info-AC" style="display: none;">
+        <h4>Encryption process</h4>
+        <p>Encrypts each letter using the formula: (a * x + b) mod m where x is the letter's position, a and b are keys, and m is the length of the alphabet (26).
+          a must be coprime with m for the operation to have an inverse.</p>
+      <h4>How to use</h4>
+      <p>1. Enter Values for 'a' and 'b': Input integers into the fields labeled "Enter value for 'a'" and "Enter value for 'b'" (Example - Enter a as 5 and b as 8).</p>
+      <p>2. Enter Your Text: Input the plaintext you want to encrypt or decrypt into the textarea labeled "Enter your text" (Example - Type "hello" in the text area.).</p>
+      <p>3. Encrypt Text: Immediately see the encrypted text as you type, thanks to the live translation.</p>
+      <p>4. Decrypt Text: Click the "Decrypt" button to display the decrypted text based on the provided 'a' and 'b' values that you inputted.</p>
+      <p>5. Reset Fields: Use the "Reset" button to clear all input fields.</p>
+      </div>
+      <label for="a">Enter value for 'a':</label>
+      <input type="number" id="a" value="1" min="1">
+      <label for="b">Enter value for 'b':</label>
+      <input type="number" id="b" value="0" min="0">
+      <label for="plaintext-affine">Enter your text:</label>
+      <textarea name="input-affine" id="plaintext-affine" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+      <button id="resetButtonAffine">Reset</button>
+      <button id="decryptButtonAffine">Decrypt</button>
+      <h3>Translated text:</h3>
+      <p id="output-affine"></p>
+    </div>
+    
+    <div id="substitution" class="cipherDiv" style="display: none;">
+      <h2>Substitution Cipher <img src="https://privacycanada.net/app/uploads/2021/02/Substitution-Cipher-icon.png" alt="Substitution-Cipher-image"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for Substitution Cipher usage info" />
+      <div id="info-SC" style="display: none;">
+        <h4>Encryption process</h4>
+        <p>Each letter in the plaintext is replaced by a letter from a fixed substitution alphabet.
+          The substitution alphabet is a permutation of the original alphabet.</p>
+      <h4>How to use</h4>
+      <p>1. Enter Substitution Alphabet: Input a 26-character long substitution alphabet in the "Enter Substitution Alphabet" text box. Ensure it contains all uppercase letters, no duplicates, and no missing letters (Example - Enter Substitution Alphabet: QWERTYUIOPLKJHGFDSAZXCVBNM).</p>
+      <p>2. Enter Plaintext: Type or paste the text you want to encrypt in the "Enter your text" textarea (Example - Enter your text: HELLO).</p>
+      <p>3. See Translated Text: The translated text will automatically appear in the "Translated text" section as you type in the alphabet and plaintext fields (Example - Result: ITSSG).</p>
+      <p>4. Reset: Click the "Reset" button to clear the input fields and the translated text.</p>
+      </div>
+      <label for="substitution-alphabet">Enter Substitution Alphabet:</label>
+      <input type="text" id="substitution-alphabet" placeholder="e.g., QWERTYUIOPLKJHGFDSAZXCVBNM" maxlength="26">
+      <label for="plaintext-substitution">Enter your text:</label>
+      <textarea name="input-substitution" id="plaintext-substitution" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+      <button id="resetButtonSubstitution">Reset</button>
+      <h3>Translated text:</h3>
+      <p id="output-substitution"></p>
+    </div>
+
+    <div id="aes" class="cipherDiv" style="display: none;">
+      <h2>Advanced Encryption Standard (AES) <img src="https://cdn4.iconfinder.com/data/icons/fintech-rich-vol-1/256/Advanced_Encryption_Standard_AES-02-512.png" alt="Advanced-Encryption-Standard-image"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for AES usage info" />
+      <div id="info-AES" style="display: none;">
+        <h4>Encryption process</h4>
+        <p>A block cipher that encrypts data using a symmetric key.
+          It uses the Rijndael algorithm and can use keys of 128, 192, or 256 bits. Your implementation uses a 32-character (256-bit) key.</p>
+      <h4>How to use</h4>
+      <p>Encrypt 1. Enter a 32-character key in the "Enter Key (32 characters)" input field (Example - Key: 12345678901234567890123456789012).</p>
+      <p>Encrypt 2. Enter the plaintext in the "Enter plaintext" textarea (Example - Plaintext: Hello World!).</p>
+      <p>Encrypt 3. Click the "Encrypt" button to encrypt the plaintext. The IV and encrypted data will be displayed in the "Output" section (Example - IV: 15,47,61,... Encrypted: 50,160,138,...).</p>
+      <p>Decrypt 1. Ensure the same 32-character key is used.</p>
+      <p>Decrypt 2. Click the "Decrypt" button to decrypt the previously encrypted data. The decrypted plaintext will be displayed in the "Output" section (Example - Decrypted: Hello World!).</p>
+      </div>
+      <label for="aes-key">Enter Key (32 characters):</label>
+      <input type="text" id="aes-key" maxlength="32">
+      <label for="aes-plaintext">Enter plaintext:</label>
+      <textarea id="aes-plaintext" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+      <button id="resetButtonAES">Reset</button>
+      <button id="aes-encrypt">Encrypt</button>
+      <button id="aes-decrypt">Decrypt</button>
+      <h3>Output:</h3>
+      <p id="aes-output"></p>
+    </div>
+
+    <div id="3DES" class="cipherDiv" style="display: none;">
+      <h2>Triple (3DES) <img src="https://cdn6.aptoide.com/imgs/9/8/7/987b7d707aca28473a6fe8b9965cac13_icon.png" alt="3DES-image"></h2>
+      <img class="info-img" src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-instructions-to-use-the-vector-icon-png-image_4638887.png" alt="Info" data-tooltip="Click for 3DES usage info" />
+      <div id="info-DES" style="display: none;">
+        <h4>Encryption process</h4>
+        <p>Extends DES encryption, applying the DES algorithm three times to each data block.
+          It uses three 56-bit keys for a combined key length of 168 bits. Your implementation uses the CryptoJS library for encryption and decryption.</p>
+    <h4>How to use</h4>
+    <p>1. Enter a 24-character key in the 'Key' input field (Example - Key: 369876365016324577956874). The key is required for both encryption and decryption.</p>
+    <p>2. Enter the message you want to encrypt in the 'Message' input field (Example - Plaintext: Hello World!).</p>
+    <p>3. Click 'Encrypt' to encrypt the message using Triple DES (Example - Encrypted: U2FsdGVkX1+lE9sYNlZznGsljZzFOfNGcd6jCBlaShk=).</p>
+    <p>4. The encrypted message will be displayed. Click 'Decrypt' to decrypt it back to the original message using the same key (Example - Decrypted: Hello World!)</p>
+  </div>
+      <label for="3des-key">Enter Key (24 characters):</label>
+  <input type="text" id="3des-key" maxlength="24">
+  <label for="3des-plaintext">Enter plaintext:</label>
+  <textarea id="3des-plaintext" cols="30" rows="10" placeholder="Enter your text here..."></textarea>
+  <button id="resetButtonTriple">Reset</button>
+  <button id="Tdes-encrypt">Encrypt</button>
+  <button id="Tdes-decrypt">Decrypt</button>
+  <h3>Output:</h3>
+  <p id="3des-output"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
